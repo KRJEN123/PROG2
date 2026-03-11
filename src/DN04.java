@@ -3,8 +3,9 @@ public class DN04 {
     public static int izBinVD(String binarno){
         int r=0;
         int stevec=0;
-        for(int i=binarno.length();i>=0;i--){
-            r=r+((binarno.charAt(i)-'0')*(int)Math.pow(2,stevec));
+        for(int i=binarno.length();i>0;i--){
+            r=r+((binarno.charAt(i-1)-'0')*((int)Math.pow(2,stevec)));
+
             stevec=stevec+1;
 
         }
@@ -18,7 +19,7 @@ public class DN04 {
         String rezultat="";
         for(int i=0;i<sporocilo.length();i=i+8){
 
-            String stevilka=sporocilo.substring(i,(i+8)-1);
+            String stevilka=sporocilo.substring(i,(i+8));
             int s=izBinVD(stevilka);
             char r=(char)s;
             rezultat=rezultat+r;
@@ -31,7 +32,7 @@ public class DN04 {
 
 
     public static void main(String[]args){
-        String sporocilo=args[1];
+        String sporocilo=args[0];
         System.out.println(pretvori(sporocilo));
 
 
