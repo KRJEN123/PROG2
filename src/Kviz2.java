@@ -274,6 +274,7 @@ public class Kviz2 {
 
        return rez;
     }
+
     public static void izpisitabelo(int[][]tab){
         for(int i=0;i<tab.length;i++) {
             for (int j = 0; j < tab[i].length; j++) {
@@ -284,9 +285,74 @@ public class Kviz2 {
             System.out.println();
         }
     }
+    String binarnoSestej(String s, String b){
+       String daljsi;
+       String krajsi;
+       String rezultat="";
+       if(s.length()>=b.length()){
+           daljsi=s;
+           krajsi=b;
+       }else{
+           daljsi=b;
+           krajsi=s;
+       }
+       int overflow=0;
+       for(int i = krajsi.length()-1;i>=0; i--){
+           if((krajsi.charAt(i)=='0' && daljsi.charAt(i)=='0')&& overflow==0){
+               rezultat=rezultat+"0";
+           }else{
+               rezultat=rezultat+"1";
+               overflow=0;
 
+           }
+            if(((krajsi.charAt(i)=='0'&&daljsi.charAt(i)=='1')||((krajsi.charAt(i)=='1'&&daljsi.charAt(i)=='0'))) &&overflow==0 ){
+                rezultat=rezultat+"1";
+            }else{
+                rezultat=rezultat+"0";
+                overflow=1;
+            }
+            if((krajsi.charAt(i)=='1' &&daljsi.charAt(i)=='1') && overflow==0){
+                rezultat=rezultat+"0";
+                overflow=1;
+
+            }else{
+                rezultat=rezultat+"1";
+            }
+
+       }
+       if(overflow!=0){
+           rezultat=rezultat+"1";
+           overflow=0;
+       }
+
+
+            return rezultat;
+    }
+    static int[] pascal(int n) {
+        int tab[][] = new int[n][];
+        for (int i =0;i<n;i++) {
+
+
+            tab[i] = new int[i+1];
+            for (int j=0;j<tab[i].length;j++) {
+
+                if (j==0 || j==tab[i].length-1) {
+                    tab[i][j]=1;
+
+                } else {
+
+                    tab[i][j]=tab[i-1][j-1]+tab[i-1][j];
+                }
+
+            }
+
+
+        }
+
+        return tab[n-1];
+    }
     public static void main(String[] args){
-        System.out.println(fibo(3));
+        //System.out.println(fibo(3));
 
 
     }
